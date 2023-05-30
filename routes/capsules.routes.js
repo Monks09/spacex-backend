@@ -1,11 +1,14 @@
 const express = require('express');
 
+const { getCapsulesData } = require('../controllers/capsules.controller');
+
 const router = express.Router();
 
 router.get("/", async (req, res) => {
     try {
         let page = req.query.page || 1;
-        let data = await getCapsulesData(page);
+        let { status, original_launch, type } = req.query;
+        let data = await getCapsulesData(page, status, original_launch, type);
 
         res.status(200).send({
             'message': 'Here are all the capsules',
