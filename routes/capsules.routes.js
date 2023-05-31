@@ -7,8 +7,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
     try {
         let page = req.query.page || 1;
-        let { status, original_launch, type } = req.query;
-        let data = await getCapsulesData(page, status, original_launch, type);
+        let { status, reuse_count, type } = req.query;
+        let data = await getCapsulesData(page, status, reuse_count, type);
 
         res.status(200).send({
             'message': 'Here are all the capsules',
